@@ -27,11 +27,13 @@ This project is still being actively tested and optimized to improve the user ex
 - 可自定义推送间隔、定时推送
 - 多种颜色皮肤可供切换
 # Usage Notes 使用注意事项
+- Download the .exe from the Releases section and install it
 - Use RSSHub Radar to find RSS feeds for target platforms
 - Not all platforms provide public RSS support; some default RSS sources are included
 - If you don’t want images downloaded for a specific tag, you can disable it in Settings > Content Source Management
 - You can clear the favorites with one click; it’s recommended to regularly organize local folder contents
->  
+>
+- 在Release中下载exe进行安装
 - 可使用RSSHub Radar查找目标平台的RSS
 - 并非所有平台都有公开RSS支持订阅，已提供一些默认RSS
 - 若不希望在收藏某分类灵感时下载其图片，可在设置>内容源管理中取消勾选下载图标
