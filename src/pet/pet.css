@@ -1,0 +1,187 @@
+/* ═══════════════════════════════════════════
+   InspEye Pet — minimal geometric desktop character
+   ═══════════════════════════════════════════ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Enable native window dragging */
+body {
+  -webkit-app-region: drag;
+}
+
+.pet-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* ── Shadow under pet ── */
+.pet-shadow {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 8px;
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.2) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: shadowPulse 3s ease-in-out infinite;
+}
+
+@keyframes shadowPulse {
+  0%, 100% { width: 60px; opacity: 0.2; }
+  50% { width: 50px; opacity: 0.12; }
+}
+
+/* ── Pet body — breathing + floating ── */
+.pet-body {
+  width: 80px;
+  height: 80px;
+  position: relative;
+  animation: float 4s ease-in-out infinite, breathe 3.5s ease-in-out infinite;
+  filter: drop-shadow(0 4px 12px rgba(0, 168, 120, 0.25));
+  transition: filter 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pet-body svg {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+/* Combine float + breathe without conflict */
+.pet-body {
+  animation: petIdle 4s ease-in-out infinite;
+}
+
+@keyframes petIdle {
+  0% { transform: translateY(0) scale(1); }
+  25% { transform: translateY(-2px) scale(1.02); }
+  50% { transform: translateY(-4px) scale(1.04); }
+  75% { transform: translateY(-2px) scale(1.02); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+/* ── Hover state — pet reacts ── */
+.pet-container:hover .pet-body {
+  filter: drop-shadow(0 6px 20px rgba(0, 168, 120, 0.4));
+}
+
+.pet-container:hover #petEyes {
+  animation: blink 0.15s ease;
+}
+
+@keyframes blink {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(0.1); }
+}
+
+#petEyes {
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+/* ── Eye idle blink (random) ── */
+.pet-eyes {
+  animation: idleBlink 5s ease-in-out infinite;
+}
+
+@keyframes idleBlink {
+  0%, 92%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(0.1); }
+}
+
+/* ── Notification dot ── */
+.notification-dot {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  width: 14px;
+  height: 14px;
+  background: #FF4757;
+  border-radius: 50%;
+  border: 2.5px solid #fff;
+  display: none;
+  animation: dotPulse 1.5s ease-in-out infinite;
+  z-index: 10;
+}
+
+.notification-dot.visible {
+  display: block;
+}
+
+@keyframes dotPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.5);
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 6px rgba(255, 71, 87, 0);
+  }
+}
+
+/* ── Skin: Sunset ── */
+body.skin-sunset .pet-body {
+  filter: drop-shadow(0 4px 12px rgba(255, 107, 107, 0.25));
+}
+body.skin-sunset .pet-container:hover .pet-body {
+  filter: drop-shadow(0 6px 20px rgba(255, 107, 107, 0.4));
+}
+
+/* ── Skin: Ocean ── */
+body.skin-ocean .pet-body {
+  filter: drop-shadow(0 4px 12px rgba(74, 144, 217, 0.25));
+}
+body.skin-ocean .pet-container:hover .pet-body {
+  filter: drop-shadow(0 6px 20px rgba(74, 144, 217, 0.4));
+}
+
+/* ── Skin: Mono ── */
+body.skin-mono .pet-body {
+  filter: drop-shadow(0 4px 12px rgba(85, 85, 85, 0.2));
+}
+body.skin-mono .pet-container:hover .pet-body {
+  filter: drop-shadow(0 6px 20px rgba(85, 85, 85, 0.35));
+}
+
+/* ── Skin: Sakura ── */
+body.skin-sakura .pet-body {
+  filter: drop-shadow(0 4px 12px rgba(255, 107, 157, 0.25));
+}
+body.skin-sakura .pet-container:hover .pet-body {
+  filter: drop-shadow(0 6px 20px rgba(255, 107, 157, 0.4));
+}
+
+/* ── Skin: Lavender ── */
+body.skin-lavender .pet-body {
+  filter: drop-shadow(0 4px 12px rgba(155, 89, 182, 0.25));
+}
+body.skin-lavender .pet-container:hover .pet-body {
+  filter: drop-shadow(0 6px 20px rgba(155, 89, 182, 0.4));
+}

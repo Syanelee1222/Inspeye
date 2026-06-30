@@ -1,0 +1,54 @@
+{
+  "name": "inspieye",
+  "version": "1.0.0",
+  "description": "InspEye - Design inspiration desktop pet that aggregates design feeds",
+  "author": "InspEye Team",
+  "main": "main.js",
+  "scripts": {
+    "start": "node scripts/launch.js",
+    "dev": "node scripts/launch.js --dev",
+    "build": "electron-builder --win",
+    "build-portable": "electron-builder --win portable"
+  },
+  "build": {
+    "appId": "com.inspieye.app",
+    "productName": "InspEye",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**/*",
+      "lib/**/*",
+      "assets/**/*"
+    ],
+    "nsis": {
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "InspEye",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "runAfterFinish": false,
+      "license": null
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "assets/icon.png",
+      "sign": false,
+      "signAndEditExecutable": false
+    }
+  },
+  "devDependencies": {
+    "electron": "^42.5.0",
+    "electron-builder": "^25.0.0",
+    "sharp": "^0.35.2"
+  }
+}

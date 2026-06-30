@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InspEye 设置</title>
+  <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+  <div class="settings-app">
+    <!-- Title bar -->
+    <div class="title-bar">
+      <div class="title-bar-drag"></div>
+      <div class="title-bar-content">
+        <span class="app-name">InspEye 设置</span>
+      </div>
+      <div class="title-bar-buttons">
+        <button class="title-btn minimize-btn" id="minimizeBtn">
+          <svg width="10" height="10" viewBox="0 0 10 10"><rect x="0" y="4.5" width="10" height="1" rx="0.5" fill="currentColor"/></svg>
+        </button>
+        <button class="title-btn close-btn" id="closeBtn">
+          <svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.5 1.5l7 7M8.5 1.5l-7 7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <button class="nav-item active" data-section="sources">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11a9 9 0 019-9 9 9 0 019 9 9 9 0 01-9 9 9 9 0 01-9-9z"/><path d="M4 11h16M12 2a15 15 0 010 18M12 2a15 15 0 000 18"/></svg>
+        内容源
+      </button>
+      <button class="nav-item" data-section="filters">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg>
+        关键词与类型
+      </button>
+      <button class="nav-item" data-section="artists">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        关注艺术家
+      </button>
+      <button class="nav-item" data-section="appearance">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 000 20z" fill="currentColor"/></svg>
+        外观与皮肤
+      </button>
+      <button class="nav-item" data-section="general">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+        推送设置
+      </button>
+      <button class="nav-item" data-section="about">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        关于
+      </button>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+      <!-- Sources section -->
+      <div class="section active" id="section-sources">
+        <h2 class="section-title">内容源管理</h2>
+        <p class="section-desc">添加 RSS 源来聚合设计灵感。支持 Core77、Pinterest、Artstation 等网站的 RSS 订阅。可尝试通过 <a class="rsshub-link" href="https://chromewebstore.google.com/detail/rsshub-radar/kefjpfngnndepjbopdmoebkipbgkggaa" target="_blank">RSSHub Radar</a> Chrome 扩展从浏览器获取 RSS 链接。</p>
+
+        <div class="add-source-form">
+          <input type="text" id="sourceName" placeholder="名称" class="text-input">
+          <input type="text" id="sourceUrl" placeholder="RSS 链接" class="text-input">
+          <select id="sourceCategory" class="select-input">
+            <option value="design">设计</option>
+            <option value="illustration">插画</option>
+            <option value="concept">概念</option>
+            <option value="interaction">交互</option>
+            <option value="ai">AI</option>
+          </select>
+          <button class="btn-primary" id="addSourceBtn">添加</button>
+        </div>
+
+        <div class="source-actions">
+          <button class="btn-secondary" id="fetchNowBtn">立即更新灵感</button>
+          <div class="cache-path-wrapper" data-tooltip="选择灵感图片的自动下载路径">
+            <input type="text" id="cachePathInput" class="text-input cache-path-input">
+            <button class="btn-primary cache-browse-btn" id="browseCacheBtn">浏览…</button>
+          </div>
+        </div>
+
+        <div class="source-list" id="sourceList"></div>
+      </div>
+
+      <!-- Filters section -->
+      <div class="section" id="section-filters">
+        <h2 class="section-title">关键词与类型筛选</h2>
+        <p class="section-desc">设置感兴趣的关键词，系统会优先展示匹配的内容。</p>
+
+        <div class="add-form">
+          <input type="text" id="keywordInput" placeholder="输入关键词（如 UI, illustration, branding）" class="text-input">
+          <button class="btn-primary" id="addKeywordBtn">添加</button>
+        </div>
+        <div class="tag-list" id="keywordList"></div>
+      </div>
+
+      <!-- Artists section -->
+      <div class="section" id="section-artists">
+        <h2 class="section-title">关注的艺术家</h2>
+        <p class="section-desc">添加你喜欢的艺术家名称，系统会标注来自他们的作品。</p>
+
+        <div class="add-form">
+          <input type="text" id="artistInput" placeholder="艺术家名称" class="text-input">
+          <button class="btn-primary" id="addArtistBtn">添加</button>
+        </div>
+        <div class="tag-list" id="artistList"></div>
+      </div>
+
+      <!-- Appearance section -->
+      <div class="section" id="section-appearance">
+        <h2 class="section-title">外观与皮肤</h2>
+        <p class="section-desc">选择你喜欢的桌宠皮肤和面板主题。</p>
+
+        <div class="setting-group">
+          <label class="setting-label">桌宠皮肤</label>
+          <div class="skin-grid" id="skinGrid"></div>
+        </div>
+
+        <div class="setting-group">
+          <label class="setting-label">主题模式</label>
+          <div class="theme-options">
+            <button class="theme-btn" data-theme="light">
+              <div class="theme-preview light"></div>
+              <span>浅色</span>
+            </button>
+            <button class="theme-btn" data-theme="dark">
+              <div class="theme-preview dark"></div>
+              <span>深色</span>
+            </button>
+            <button class="theme-btn" data-theme="system">
+              <div class="theme-preview system"></div>
+              <span>跟随系统</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- General section -->
+      <div class="section" id="section-general">
+        <h2 class="section-title">推送设置</h2>
+
+        <div class="setting-group">
+          <label class="setting-label">更新间隔</label>
+          <p class="setting-hint">自动拉取新内容的时间间隔</p>
+          <div class="interval-select-row">
+            <select id="intervalHours" class="select-input interval-select"></select>
+            <span class="interval-unit">小时</span>
+            <select id="intervalMinutes" class="select-input interval-select"></select>
+            <span class="interval-unit">分钟</span>
+          </div>
+        </div>
+
+        <div class="setting-group">
+          <div class="toggle-row">
+            <div>
+              <label class="setting-label">定时推送</label>
+              <p class="setting-hint">在指定时间自动拉取新内容</p>
+            </div>
+            <label class="toggle">
+              <input type="checkbox" id="scheduledPushToggle">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="scheduled-push-config" id="scheduledPushConfig" style="display:none;">
+            <div class="sp-row">
+              <label class="sp-label">推送时间</label>
+              <input type="time" id="scheduledPushTime" class="text-input sp-time-input" value="09:00">
+            </div>
+            <div class="sp-row">
+              <label class="sp-label">重复方式</label>
+              <div class="sp-type-options">
+                <button class="sp-type-btn active" data-type="daily">每天</button>
+                <button class="sp-type-btn" data-type="weekly">每周</button>
+              </div>
+            </div>
+            <div class="sp-row sp-weekday-row" id="spWeekdayRow" style="display:none;">
+              <label class="sp-label">星期</label>
+              <div class="weekday-options">
+                <button class="weekday-btn" data-day="0">日</button>
+                <button class="weekday-btn" data-day="1">一</button>
+                <button class="weekday-btn" data-day="2">二</button>
+                <button class="weekday-btn" data-day="3">三</button>
+                <button class="weekday-btn" data-day="4">四</button>
+                <button class="weekday-btn" data-day="5">五</button>
+                <button class="weekday-btn" data-day="6">六</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="setting-group">
+          <div class="toggle-row">
+            <div>
+              <label class="setting-label">推送通知</label>
+              <p class="setting-hint">有新内容时显示系统通知</p>
+            </div>
+            <label class="toggle">
+              <input type="checkbox" id="notificationsToggle">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="setting-group">
+          <div class="toggle-row">
+            <div>
+              <label class="setting-label">开机自启</label>
+              <p class="setting-hint">开机时自动启动 InspEye</p>
+            </div>
+            <label class="toggle">
+              <input type="checkbox" id="autoLaunchToggle">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- About section -->
+      <div class="section" id="section-about">
+        <h2 class="section-title">关于 InspEye</h2>
+
+        <div class="about-card">
+          <div class="about-logo">
+            <svg id="aboutPetSvg" width="48" height="48" viewBox="0 0 100 100">
+              <defs>
+                <linearGradient id="aboutGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop id="aboutGradStop1" offset="0%" stop-color="#00E0A8"/>
+                  <stop id="aboutGradStop2" offset="100%" stop-color="#00A878"/>
+                </linearGradient>
+              </defs>
+              <path d="M 50,8 C 72,8 92,18 92,42 C 92,66 78,92 50,92 C 22,92 8,66 8,42 C 8,18 28,8 50,8 Z" fill="url(#aboutGrad)"/>
+              <circle cx="38" cy="44" r="4" fill="#1a1a2e" opacity="0.85"/>
+              <circle cx="62" cy="44" r="4" fill="#1a1a2e" opacity="0.85"/>
+              <path d="M 42,58 Q 50,64 58,58" stroke="#1a1a2e" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.6"/>
+            </svg>
+          </div>
+          <h3>InspEye 灵感桌宠</h3>
+          <p class="version">版本 1.0.0</p>
+          <p class="about-desc">一款面向设计从业者的桌面悬浮灵感助手，自动聚合设计网站案例更新，鼠标悬停即可浏览。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="settings.js"></script>
+</body>
+</html>

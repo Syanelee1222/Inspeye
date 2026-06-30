@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InspEye Panel</title>
+  <link rel="stylesheet" href="panel.css">
+</head>
+<body>
+  <div class="panel" id="panel">
+    <!-- Header -->
+    <div class="panel-header">
+      <div class="header-left">
+        <div class="logo-dot"></div>
+        <span class="panel-title">InspEye</span>
+        <span class="unread-badge" id="unreadBadge" style="display:none;">0</span>
+      </div>
+      <div class="header-right">
+        <button class="icon-btn" id="refreshBtn" title="刷新">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12a9 9 0 11-3-6.7L21 8"/>
+            <path d="M21 3v5h-5"/>
+          </svg>
+        </button>
+        <button class="icon-btn" id="openImageFolderBtn" title="打开图片文件夹">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/>
+          </svg>
+        </button>
+        <button class="icon-btn" id="settingsBtn" title="设置">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/>
+            <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Tab bar -->
+    <div class="tab-bar">
+      <div class="tab-left">
+        <button class="tab active" data-tab="latest">最新</button>
+        <button class="tab" data-tab="favorites">收藏</button>
+      </div>
+      <button class="clear-fav-btn" id="clearFavBtn" title="清空所有收藏" style="display:none;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 6h18"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
+        </svg>
+        清空
+      </button>
+    </div>
+
+    <!-- Category filters -->
+    <div class="filter-bar" id="filterBar">
+      <button class="filter-chip active" data-cat="all">全部</button>
+    </div>
+
+    <!-- Content area -->
+    <div class="panel-content" id="contentArea">
+      <div class="loading-state" id="loadingState">
+        <div class="spinner"></div>
+        <p>正在加载...</p>
+      </div>
+    </div>
+
+    <!-- Empty state -->
+    <div class="empty-state" id="emptyState" style="display:none;">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3">
+        <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/>
+        <path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/>
+      </svg>
+      <p class="empty-title">还没有灵感内容</p>
+      <p class="empty-desc">请在设置中添加内容源，或等待自动更新</p>
+      <button class="empty-btn" id="emptySettingsBtn">前往设置</button>
+    </div>
+  </div>
+
+  <script src="panel.js"></script>
+</body>
+</html>

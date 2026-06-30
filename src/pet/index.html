@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InspEye Pet</title>
+  <link rel="stylesheet" href="pet.css">
+</head>
+<body>
+  <div class="pet-container" id="petContainer">
+    <div class="pet-shadow"></div>
+    <div class="pet-body" id="petBody">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <!-- Gradients defined per skin, swapped via JS -->
+          <linearGradient id="petGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#00E0A8"/>
+            <stop offset="100%" stop-color="#00A878"/>
+          </linearGradient>
+          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feMerge>
+              <feMergeNode in="blur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+          <filter id="innerShadow">
+            <feOffset dx="0" dy="2"/>
+            <feGaussianBlur stdDeviation="2"/>
+            <feComposite in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowDiff"/>
+            <feFlood flood-color="#ffffff" flood-opacity="0.15"/>
+            <feComposite in2="shadowDiff" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+          </filter>
+        </defs>
+
+        <!-- Main body — squircle shape -->
+        <path id="petShape" d="M 50,8 C 72,8 92,18 92,42 C 92,66 78,92 50,92 C 22,92 8,66 8,42 C 8,18 28,8 50,8 Z"
+              fill="url(#petGradient)"
+              filter="url(#innerShadow)"/>
+
+        <!-- Eyes -->
+        <g id="petEyes" class="pet-eyes">
+          <circle cx="38" cy="44" r="4" fill="#1a1a2e" opacity="0.85"/>
+          <circle cx="62" cy="44" r="4" fill="#1a1a2e" opacity="0.85"/>
+          <!-- Eye shine -->
+          <circle cx="39.5" cy="42.5" r="1.5" fill="#ffffff" opacity="0.9"/>
+          <circle cx="63.5" cy="42.5" r="1.5" fill="#ffffff" opacity="0.9"/>
+        </g>
+
+        <!-- Mouth — subtle smile -->
+        <path id="petMouth" d="M 42,58 Q 50,64 58,58" stroke="#1a1a2e" stroke-width="2"
+              fill="none" stroke-linecap="round" opacity="0.6"/>
+
+        <!-- Cheeks — subtle blush -->
+        <ellipse cx="28" cy="54" rx="5" ry="3" fill="#ffffff" opacity="0.12"/>
+        <ellipse cx="72" cy="54" rx="5" ry="3" fill="#ffffff" opacity="0.12"/>
+      </svg>
+    </div>
+
+    <!-- Notification dot -->
+    <div class="notification-dot" id="notifDot"></div>
+  </div>
+
+  <script src="pet.js"></script>
+</body>
+</html>
