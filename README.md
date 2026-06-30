@@ -11,7 +11,7 @@ This project is still being actively tested and optimized to improve the user ex
 - Node.js: Handles file system, HTTPS requests, crypto hashing, and path utilities 
 - Vanilla JavaScript: Pure rendering logic without any framework dependencies (no Vue/React) 
 - CSS3: Glassmorphism UI, animations, responsive layout, and CSS variable theme system
-- 
+---
 - Electron: 跨平台桌面应用框架，提供多窗口 / 系统托盘 / IPC 通信
 - Node.js: 文件系统操作 / HTTPS 请求 / 加密哈希 / 路径处理
 - 原生 JavaScript: 渲染进程逻辑，无框架依赖（无 Vue/React）
