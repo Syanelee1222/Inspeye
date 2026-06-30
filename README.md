@@ -8,6 +8,32 @@ Simply hover your mouse over the desktop pet to bring up a sleek panel for brows
 This project is still being actively tested and optimized to improve the user experience.<br>
 >  
 该项目仍在持续测试并优化用户体验中。
+# Functions 功能
+- Open inspiration images in their original source websites
+- Automatically download saved inspirations to a local folder; clearing favorites will not delete local files
+- Customizable local download directory
+- Custom RSS feed sources
+- Option to enable/disable image downloads per category
+- Configurable push intervals and scheduled notifications
+- Multiple color themes available for switching
+>  
+- 点击灵感图片前往其原网站
+- 收藏灵感时自动下载图片至本地文件夹，清空收藏夹不会删除本地文件
+- 可指定下载图片的本地文件夹路径
+- 可自定义RSS内容源
+- 可根据不同分类的需要，选择是否下载图片
+- 可自定义推送间隔、定时推送
+- 多种颜色皮肤可供切换
+# Usage Notes 使用注意事项
+- Use RSSHub Radar to find RSS feeds for target platforms
+- Not all platforms provide public RSS support; some default RSS sources are included
+- If you don’t want images downloaded for a specific tag, you can disable it in Settings > Content Source Management
+- You can clear the favorites with one click; it’s recommended to regularly organize local folder contents
+>  
+- 可使用RSSHub Radar查找目标平台的RSS
+- 并非所有平台都有公开RSS支持订阅，已提供一些默认RSS
+- 若不希望在收藏某分类灵感时下载其图片，可在设置>内容源管理中取消勾选下载图标
+- 收藏夹堆积过多内容时可一键清除，建议定期整理本地文件夹内内容
 # Framework 框架
 - Electron: Cross-platform desktop app framework with multi-window, system tray, and IPC support 
 - Node.js: Handles file system, HTTPS requests, crypto hashing, and path utilities 
@@ -28,19 +54,4 @@ This project is still being actively tested and optimized to improve the user ex
 - 复用 Electron 的 session.defaultSession.fetch()，走 Chromium 网络栈，自动支持系统代理
 - UI渲染原生 DOM 操作，不依赖 Vue/React/jQuery
 - 7 天本地 JSON 缓存，自动清理过期条目
-# Functions 功能
-- Open inspiration images in their original source websites
-- Automatically download saved inspirations to a local folder; clearing favorites will not delete local files
-- Customizable local download directory
-- Custom RSS feed sources
-- Option to enable/disable image downloads per category
-- Configurable push intervals and scheduled notifications
-- Multiple color themes available for switching
->  
-- 点击灵感图片前往其原网站
-- 收藏灵感时自动下载图片至本地文件夹，清空收藏夹不会删除本地文件
-- 可指定下载图片的本地文件夹路径
-- 可自定义RSS内容源
-- 可根据不同分类的需要，选择是否下载图片
-- 可自定义推送间隔、定时推送
-- 多种颜色皮肤可供切换
+
